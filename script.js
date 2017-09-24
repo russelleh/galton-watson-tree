@@ -1,6 +1,7 @@
+$zoom = 1
+
 class Node {
   constructor(x, y, orientation) {
-    const zoom = 2;
     const min_gens_for_cycle = 20;
     const max_possible_mutation = 1 / min_gens_for_cycle
     var absolute_mutation = Math.random() * max_possible_mutation
@@ -9,8 +10,8 @@ class Node {
 
     var x_mutation = Math.cos(this.orientation * (Math.PI * 2));
     var y_mutation = Math.sin(this.orientation * (Math.PI * 2));
-    this.x = x + (x_mutation * zoom);
-    this.y = y + (y_mutation * zoom);
+    this.x = x + (x_mutation * $zoom);
+    this.y = y + (y_mutation * $zoom);
   }
 
   propagate(context) {
@@ -33,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var canvas = document.getElementsByTagName("canvas")[0];
 
   const context = canvas.getContext("2d");
-  const r = window.devicePixelRatio;
-  canvas.height = window.innerHeight * r;
-  canvas.width  = window.innerWidth  * r;
-  canvas.style.width  = canvas.width  / r;
-  canvas.style.height = canvas.height / r;
+  $zoom = window.devicePixelRatio;
+  canvas.height = window.innerHeight * $zoom;
+  canvas.width  = window.innerWidth  * $zoom;
+  canvas.style.width  = canvas.width  / $zoom;
+  canvas.style.height = canvas.height / $zoom;
 
   context.fillStyle = "black";
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       nodes = new_nodes.slice();
     } else {
       context.fillStyle = "black";
-      context.fillRect(0, 125, canvas.width, canvas.height);
+      context.fillRect(0, 125 * $zoom, canvas.width, canvas.height);
       universes++;
       generations_c = 0;
       nodes = [];
@@ -67,17 +68,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     context.fillStyle = "black";
-    context.fillRect(0, 0, canvas.width, 125);
+    context.fillRect(0, 0, canvas.width, 125 * $zoom);
     context.fillStyle = "white";
-    context.font      = "24px sans-serif";
+    context.font      = 12 * $zoom + "px sans-serif";
 
-    context.fillText("Organisms", 25, 50);
-    context.fillText(organisms,  25, 100);
+    context.fillText("Organisms", 25 * $zoom, 25 * $zoom);
+    context.fillText(organisms,   25 * $zoom, 50 * $zoom);
 
-    context.fillText("Generations", 175, 50);
-    context.fillText(generations,  175, 100);
+    context.fillText("Generations", 100 * $zoom, 25 * $zoom);
+    context.fillText(generations,   100 * $zoom, 50 * $zoom);
 
-    context.fillText("Universes", 325, 50);
-    context.fillText(universes,  325, 100);
+    context.fillText("Universes", 175 * $zoom, 25  * $zoom);
+    context.fillText(universes,   175 * $zoom, 50 * $zoom);
   }, 1);
 });
