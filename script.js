@@ -44,6 +44,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var nodes = [];
   nodes.push(new Node(canvas.width / 2, canvas.height / 2, 0));
   setInterval(function() {
+    generations++;
+    if (nodes.length) {
+      new_nodes = [];
+      for (var i = 0; i < nodes.length; i++) {
+        var children = nodes[i].propagate(context);
+        for (var j = 0; j < children.length; j++) {
+          new_nodes.push(children[j]);
+          organisms++;
+        }
+      }
+      nodes = new_nodes.slice();
+    } else {
+      context.fillStyle = "black";
+      context.fillRect(0, 225, canvas.width, canvas.height);
+      universes++;
+      generations_c = 0;
+      nodes = [];
+      nodes.push(new Node(canvas.width / 2, canvas.height / 2, Math.random()));
+    }
+
+
+
     context.fillStyle = "black";
     context.fillRect(0, 0, canvas.width, 225);
     context.fillStyle = "white";
@@ -71,24 +93,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     context.fillText("Mutation", 1075, 50);
     context.fillText("2.5%", 1075, 100);
 
-    generations++;
-    if (nodes.length) {
-      new_nodes = [];
-      for (var i = 0; i < nodes.length; i++) {
-        var children = nodes[i].propagate(context);
-        for (var j = 0; j < children.length; j++) {
-          new_nodes.push(children[j]);
-          organisms++;
-        }
-      }
-      nodes = new_nodes.slice();
-    } else {
-      context.fillStyle = "black";
-      context.fillRect(0, 225, canvas.width, canvas.height);
-      universes++;
-      generations_c = 0;
-      nodes = [];
-      nodes.push(new Node(canvas.width / 2, canvas.height / 2, Math.random()));
-    }
   }, 1);
 });
