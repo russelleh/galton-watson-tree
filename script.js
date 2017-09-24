@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       nodes = new_nodes.slice();
     } else {
       context.fillStyle = "black";
-      context.fillRect(0, 125 * $zoom, canvas.width, canvas.height);
+      context.fillRect(0, 75 * $zoom, canvas.width, canvas.height);
       universes++;
       generations_c = 0;
       nodes = [];
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     context.fillStyle = "black";
-    context.fillRect(0, 0, canvas.width, 125 * $zoom);
+    context.fillRect(0, 0, canvas.width, 75 * $zoom);
     context.fillStyle = "white";
     context.font      = 12 * $zoom + "px sans-serif";
 
