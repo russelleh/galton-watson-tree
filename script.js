@@ -2,11 +2,10 @@ $zoom = 1
 
 class Node {
   constructor(x, y, orientation) {
-    const min_gens_for_cycle = 20;
-    const max_possible_mutation = 1 / min_gens_for_cycle
-    var absolute_mutation = Math.random() * max_possible_mutation
-    var mutation          = absolute_mutation - (max_possible_mutation / 2)
-    this.orientation      = (orientation + mutation) % 1
+    const mutation_rate = 0.05;
+    var signed_mutation = Math.random() - 0.5
+    var mutation        = signed_mutation * mutation_rate
+    this.orientation    = (orientation + mutation) % 1
 
     var x_mutation = Math.cos(this.orientation * (Math.PI * 2));
     var y_mutation = Math.sin(this.orientation * (Math.PI * 2));
