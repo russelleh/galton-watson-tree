@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       nodes = new_nodes.slice();
     } else {
       context.fillStyle = "black";
-      context.fillRect(0, 225, canvas.width, canvas.height);
+      context.fillRect(0, 125, canvas.width, canvas.height);
       universes++;
       generations_c = 0;
       nodes = [];
@@ -67,31 +67,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
     context.fillStyle = "black";
-    context.fillRect(0, 0, canvas.width, 225);
+    context.fillRect(0, 0, canvas.width, 125);
     context.fillStyle = "white";
     context.font      = "24px sans-serif";
 
-    context.fillText("Total",         25, 100);
-    context.fillText("Organisms /",   25, 150);
-    context.fillText("Generations /", 25, 200);
+    context.fillText("Organisms", 25, 50);
+    context.fillText(organisms,  25, 100);
 
-    context.fillText("Organism", 325, 50);
-    context.fillText(organisms,  325, 100);
+    context.fillText("Generations", 175, 50);
+    context.fillText(generations,  175, 100);
 
-    context.fillText("Generation", 475, 50);
-    context.fillText(generations,  475, 100);
-    context.fillText(Math.round(organisms/generations), 475, 150);
-
-    context.fillText("Universe", 625, 50);
-    context.fillText(universes,  625, 100);
-    context.fillText(Math.round(organisms/universes), 625, 150);
-    context.fillText(Math.round(generations/universes), 625, 200);
-
-    context.fillText("λ", 925, 50);
-    context.fillText("1", 925, 100);
-
-    context.fillText("Mutation", 1075, 50);
-    context.fillText("2.5%", 1075, 100);
-
+    context.fillText("Universes", 325, 50);
+    context.fillText(universes,  325, 100);
   }, 1);
 });
